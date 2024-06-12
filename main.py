@@ -2,12 +2,9 @@ from keras.callbacks import EarlyStopping
 from sklearn.metrics import accuracy_score, confusion_matrix
 
 from config import TEST_DIR, TRAIN_DIR, VAL_DIR
-from data_preprocessing.data_processing import load_data, split_data
-from data_preprocessing.image_augmentation import (
-    create_data_generators,
-    preprocess_images,
-)
 from model.model import create_model
+from preprocessing.data_processing import load_data, split_data
+from preprocessing.image_augmentation import create_data_generators, preprocess_images
 from utils.data_utils import clean_directory, remove_directories, save_new_images
 from visualization.plot_results import (
     plot_confusion_matrix,
