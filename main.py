@@ -1,3 +1,6 @@
+import pickle
+from pathlib import Path
+
 from keras.callbacks import EarlyStopping
 from sklearn.metrics import accuracy_score, confusion_matrix
 
@@ -43,18 +46,24 @@ model = create_model()
 
 model.summary()
 
-# train_generator, validation_generator = create_data_generators()
-#
-# history = model.fit(
-#     train_generator,
-#     steps_per_epoch=7,
-#     epochs=30,
-#     validation_data=validation_generator,
-#     validation_steps=2,
-#     callbacks=[EarlyStopping(monitor="val_accuracy", mode="max", patience=6)],
-# )
-#
-# plot_model_performance(history)
+train_generator, validation_generator = create_data_generators()
+
+history = model.fit(
+    train_generator,
+    steps_per_epoch=7,
+    epochs=30,
+    validation_data=validation_generator,
+    validation_steps=2,
+    callbacks=[EarlyStopping(monitor="val_accuracy", mode="max", patience=6)],
+)
+
+with open("model_history.pkl", "wb") as file_pi:
+    pickle.dump(history.history, file_pi)
+
+with open("model_history.pkl", "rb") as file_pi:
+    loaded_history = pickle.load(file_pi)
+
+plot_model_performance(history)
 
 predictions = [1 if x > 0.5 else 0 for x in model.predict(X_test_prep)]
 
