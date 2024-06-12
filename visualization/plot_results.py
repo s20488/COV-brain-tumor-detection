@@ -74,12 +74,12 @@ def plot_confusion_matrix(
     plt.show()
 
 
-def plot_model_performance(history: Any) -> None:
-    acc = history.history["accuracy"]
-    val_acc = history.history["val_accuracy"]
-    loss = history.history["loss"]
-    val_loss = history.history["val_loss"]
-    epochs_range = range(1, len(history.epoch) + 1)
+def plot_model_performance(history: dict) -> None:
+    acc = history["accuracy"]
+    val_acc = history["val_accuracy"]
+    loss = history["loss"]
+    val_loss = history["val_loss"]
+    epochs_range = range(1, len(acc) + 1)
 
     plt.figure(figsize=(15, 5))
 

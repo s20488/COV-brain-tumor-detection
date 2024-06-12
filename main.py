@@ -63,12 +63,20 @@ with open("model_history.pkl", "wb") as file_pi:
 with open("model_history.pkl", "rb") as file_pi:
     loaded_history = pickle.load(file_pi)
 
-plot_model_performance(history)
+plot_model_performance(loaded_history)
 
-predictions = [1 if x > 0.5 else 0 for x in model.predict(X_test_prep)]
+predictions_val = [1 if x > 0.5 else 0 for x in model.predict(X_val_prep)]
 
-accuracy = accuracy_score(y_test, predictions)
+predictions_test = [1 if x > 0.5 else 0 for x in model.predict(X_test_prep)]
+
+accuracy = accuracy_score(y_val, predictions_val)
+print("Val Accuracy = %.2f" % accuracy)
+
+confusion_mtx = confusion_matrix(y_val, predictions_val)
+plot_confusion_matrix(confusion_mtx, classes=list(labels.items()), normalize=False)
+
+accuracy = accuracy_score(y_test, predictions_test)
 print("Test Accuracy = %.2f" % accuracy)
 
-confusion_mtx = confusion_matrix(y_test, predictions)
+confusion_mtx = confusion_matrix(y_test, predictions_test)
 plot_confusion_matrix(confusion_mtx, classes=list(labels.items()), normalize=False)

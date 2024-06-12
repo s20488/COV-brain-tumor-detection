@@ -7,7 +7,9 @@ from config import IMG_SIZE
 
 def create_model() -> Sequential:
     base_model = VGG16(
-        weights="imagenet", include_top=False, input_shape=IMG_SIZE + (3,)
+        weights="vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5",
+        include_top=False,
+        input_shape=IMG_SIZE + (3,),
     )
     model = Sequential(
         [

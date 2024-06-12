@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "cov-brain-tumor-detection"
 version = "0.1.0"
-description = ""
+description = "Wykrywanie guzów mózgu z obrazów MRI przy użyciu modelu CNN, VGG-16"
 authors = ["Anastasiia Ponkratova"]
 readme = "README.md"
 
