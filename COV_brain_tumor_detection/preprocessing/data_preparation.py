@@ -5,7 +5,13 @@ import cv2
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-from config import IMG_SIZE, SEED, TEST_DIR, TRAIN_DIR, VAL_DIR
+from COV_brain_tumor_detection.config import (
+    IMG_SIZE,
+    SEED,
+    TEST_DIR,
+    TRAIN_DIR,
+    VAL_DIR,
+)
 
 
 def split_data(
@@ -46,21 +52,21 @@ def split_data(
             shutil.copy(
                 os.path.join(img_path, label, file_name),
                 os.path.join(
-                    "brain_tumor_dataset_evolved/train", label.lower(), file_name
+                    "../brain_tumor_dataset_evolved/train", label.lower(), file_name
                 ),
             )
         for file_name in test_files:
             shutil.copy(
                 os.path.join(img_path, label, file_name),
                 os.path.join(
-                    "brain_tumor_dataset_evolved/test", label.lower(), file_name
+                    "../brain_tumor_dataset_evolved/test", label.lower(), file_name
                 ),
             )
         for file_name in val_files:
             shutil.copy(
                 os.path.join(img_path, label, file_name),
                 os.path.join(
-                    "brain_tumor_dataset_evolved/val", label.lower(), file_name
+                    "../brain_tumor_dataset_evolved/val", label.lower(), file_name
                 ),
             )
 

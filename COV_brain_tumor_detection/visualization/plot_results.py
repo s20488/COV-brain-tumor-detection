@@ -5,7 +5,7 @@ from typing import Any
 import matplotlib.pyplot as plt
 import numpy as np
 
-from config import TEST_DIR, TRAIN_DIR, VAL_DIR
+from COV_brain_tumor_detection.config import TEST_DIR, TRAIN_DIR, VAL_DIR
 
 
 def plot_data_distribution() -> None:

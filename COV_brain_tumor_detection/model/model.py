@@ -2,7 +2,7 @@ from keras import layers
 from keras.applications.vgg16 import VGG16
 from keras.models import Sequential
 
-from config import IMG_SIZE
+from COV_brain_tumor_detection.config import IMG_SIZE
 
 
 def create_model() -> Sequential:

@@ -4,7 +4,7 @@ import numpy as np
 from keras.applications.vgg16 import preprocess_input
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
-from config import IMG_SIZE, SEED, TRAIN_DIR, VAL_DIR
+from COV_brain_tumor_detection.config import IMG_SIZE, SEED, TRAIN_DIR, VAL_DIR
 
 
 def preprocess_images(
