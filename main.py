@@ -43,18 +43,18 @@ model = create_model()
 
 model.summary()
 
-train_generator, validation_generator = create_data_generators()
-
-history = model.fit(
-    train_generator,
-    steps_per_epoch=6,
-    epochs=50,
-    validation_data=validation_generator,
-    validation_steps=3,
-    callbacks=[EarlyStopping(monitor="val_accuracy", mode="max", patience=6)],
-)
-
-plot_model_performance(history)
+# train_generator, validation_generator = create_data_generators()
+#
+# history = model.fit(
+#     train_generator,
+#     steps_per_epoch=7,
+#     epochs=30,
+#     validation_data=validation_generator,
+#     validation_steps=2,
+#     callbacks=[EarlyStopping(monitor="val_accuracy", mode="max", patience=6)],
+# )
+#
+# plot_model_performance(history)
 
 predictions = [1 if x > 0.5 else 0 for x in model.predict(X_test_prep)]
 

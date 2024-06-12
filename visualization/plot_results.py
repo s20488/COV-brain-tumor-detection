@@ -5,24 +5,16 @@ from typing import Any
 import matplotlib.pyplot as plt
 import numpy as np
 
+from config import IMG_SIZE, SEED, TEST_DIR, TRAIN_DIR, VAL_DIR
+
 
 def plot_data_distribution() -> None:
-    train_yes_count = len(
-        os.listdir(os.path.join("brain_tumor_dataset_new", "train", "yes"))
-    )
-    train_no_count = len(
-        os.listdir(os.path.join("brain_tumor_dataset_new", "train", "no"))
-    )
-    test_yes_count = len(
-        os.listdir(os.path.join("brain_tumor_dataset_new", "test", "yes"))
-    )
-    test_no_count = len(
-        os.listdir(os.path.join("brain_tumor_dataset_new", "test", "no"))
-    )
-    val_yes_count = len(
-        os.listdir(os.path.join("brain_tumor_dataset_new", "val", "yes"))
-    )
-    val_no_count = len(os.listdir(os.path.join("brain_tumor_dataset_new", "val", "no")))
+    train_yes_count = len(os.listdir(os.path.join(TRAIN_DIR, "yes")))
+    train_no_count = len(os.listdir(os.path.join(TRAIN_DIR, "no")))
+    test_yes_count = len(os.listdir(os.path.join(TEST_DIR, "yes")))
+    test_no_count = len(os.listdir(os.path.join(TEST_DIR, "no")))
+    val_yes_count = len(os.listdir(os.path.join(VAL_DIR, "yes")))
+    val_no_count = len(os.listdir(os.path.join(VAL_DIR, "no")))
 
     train_count = train_yes_count + train_no_count
     test_count = test_yes_count + test_no_count

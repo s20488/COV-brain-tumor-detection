@@ -5,22 +5,22 @@ import cv2
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-from config import IMG_SIZE, SEED
+from config import IMG_SIZE, SEED, TEST_DIR, TRAIN_DIR, VAL_DIR
 
 
 def split_data(
     img_path: str,
-    train_size: float = 0.7,
-    test_size: float = 0.15,
-    val_size: float = 0.15,
+    train_size: float = 0.8,
+    test_size: float = 0.1,
+    val_size: float = 0.1,
 ) -> None:
     directories = [
-        "brain_tumor_dataset_new/train/yes",
-        "brain_tumor_dataset_new/train/no",
-        "brain_tumor_dataset_new/test/yes",
-        "brain_tumor_dataset_new/test/no",
-        "brain_tumor_dataset_new/val/yes",
-        "brain_tumor_dataset_new/val/no",
+        TRAIN_DIR + "yes",
+        TRAIN_DIR + "no",
+        TEST_DIR + "yes",
+        TEST_DIR + "no",
+        VAL_DIR + "yes",
+        VAL_DIR + "no",
     ]
 
     for directory in directories:
@@ -45,17 +45,17 @@ def split_data(
         for file_name in train_files:
             shutil.copy(
                 os.path.join(img_path, label, file_name),
-                os.path.join("brain_tumor_dataset_new/train", label.lower(), file_name),
+                os.path.join(TRAIN_DIR, label.lower(), file_name),
             )
         for file_name in test_files:
             shutil.copy(
                 os.path.join(img_path, label, file_name),
-                os.path.join("brain_tumor_dataset_new/test", label.lower(), file_name),
+                os.path.join(TEST_DIR, label.lower(), file_name),
             )
         for file_name in val_files:
             shutil.copy(
                 os.path.join(img_path, label, file_name),
-                os.path.join("brain_tumor_dataset_new/val", label.lower(), file_name),
+                os.path.join(VAL_DIR, label.lower(), file_name),
             )
 
 
