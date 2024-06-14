@@ -1,9 +1,15 @@
 import itertools
 import os
-from typing import Any
+from typing import Any, Union
 
 import matplotlib.pyplot as plt
 import numpy as np
+from sklearn.metrics import (
+    auc,
+    average_precision_score,
+    precision_recall_curve,
+    roc_curve,
+)
 
 from COV_brain_tumor_detection.config import TEST_DIR, TRAIN_DIR, VAL_DIR
 
@@ -100,4 +106,39 @@ def plot_model_performance(history: dict) -> None:
     plt.title("Model Loss")
 
     plt.tight_layout()
+    plt.show()
+
+
+def plot_precision_recall(
+    y_true: Union[list, np.ndarray], y_scores: Union[list, np.ndarray]
+) -> None:
+    precision, recall, _ = precision_recall_curve(y_true, y_scores)
+    average_precision = average_precision_score(y_true, y_scores)
+
+    plt.figure(figsize=(6, 6))
+    plt.step(recall, precision, color="b", alpha=0.2, where="post")
+    plt.fill_between(recall, precision, step="post", alpha=0.2, color="b")
+    plt.xlabel("Recall")
+    plt.ylabel("Precision")
+    plt.ylim([0.0, 1.05])
+    plt.xlim([0.0, 1.0])
+    plt.title(f"Precision-Recall curve: AP={average_precision}")
+    plt.show()
+
+
+def plot_roc_curve(
+    y_true: Union[list, np.ndarray], y_scores: Union[list, np.ndarray]
+) -> None:
+    fpr, tpr, _ = roc_curve(y_true, y_scores)
+    roc_auc = auc(fpr, tpr)
+
+    plt.figure(figsize=(6, 6))
+    plt.plot(fpr, tpr, color="darkorange", lw=2, label=f"ROC curve (area = {roc_auc})")
+    plt.plot([0, 1], [0, 1], color="navy", lw=2, linestyle="--")
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel("False Positive Rate")
+    plt.ylabel("True Positive Rate")
+    plt.title("Receiver Operating Characteristic")
+    plt.legend(loc="lower right")
     plt.show()

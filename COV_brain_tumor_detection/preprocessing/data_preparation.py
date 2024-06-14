@@ -52,21 +52,21 @@ def split_data(
             shutil.copy(
                 os.path.join(img_path, label, file_name),
                 os.path.join(
-                    "../brain_tumor_dataset_evolved/train", label.lower(), file_name
+                    "brain_tumor_dataset_evolved/train", label.lower(), file_name
                 ),
             )
         for file_name in test_files:
             shutil.copy(
                 os.path.join(img_path, label, file_name),
                 os.path.join(
-                    "../brain_tumor_dataset_evolved/test", label.lower(), file_name
+                    "brain_tumor_dataset_evolved/test", label.lower(), file_name
                 ),
             )
         for file_name in val_files:
             shutil.copy(
                 os.path.join(img_path, label, file_name),
                 os.path.join(
-                    "../brain_tumor_dataset_evolved/val", label.lower(), file_name
+                    "brain_tumor_dataset_evolved/val", label.lower(), file_name
                 ),
             )
 
