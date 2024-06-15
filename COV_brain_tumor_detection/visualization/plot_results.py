@@ -1,6 +1,6 @@
 import itertools
 import os
-from typing import Any, Union
+from typing import Union
 
 import matplotlib.pyplot as plt
 import numpy as np
