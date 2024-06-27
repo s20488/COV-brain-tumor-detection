@@ -2,7 +2,7 @@ from .config import IMG_SIZE, TEST_DIR, TRAIN_DIR, VAL_DIR
 from .model.model import create_model
 from .preprocessing.data_augmentation import create_data_generators, preprocess_images
 from .preprocessing.data_preparation import load_data, split_data
-from .utils.data_utils import clean_directory, remove_directories, save_new_images
+from .utils.data_utils import clean_directory, save_new_images
 from .visualization.plot_results import (
     plot_confusion_matrix,
     plot_data_distribution,

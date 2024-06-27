@@ -20,6 +20,18 @@ def split_data(
     test_size: float = 0.1,
     val_size: float = 0.1,
 ) -> None:
+    """
+    Splits dataset into training, testing, and validation sets and copies files to corresponding directories.
+
+    Parameters:
+    img_path (str): Path to the image dataset directory.
+    train_size (float): Proportion of the dataset for training. Default is 80%.
+    test_size (float): Proportion of the dataset for testing. Default is 10%.
+    val_size (float): Proportion of the dataset for validation. Default is 10%.
+
+    Returns:
+    None: Creates directories and copies files.
+    """
     directories = [
         TRAIN_DIR + "yes",
         TRAIN_DIR + "no",
@@ -72,6 +84,19 @@ def split_data(
 
 
 def load_data(dir_path: str, img_size: tuple = IMG_SIZE) -> tuple:
+    """
+    Loads image data from a directory and prepares it for machine learning tasks.
+
+    Parameters:
+    dir_path (str): Path to the directory containing subdirectories of image data.
+    img_size (tuple): Desired size of the images after resizing. Default is IMG_SIZE.
+
+    Returns:
+    tuple: A tuple containing:
+        - X (np.array): Array of resized images.
+        - y (np.array): Array of corresponding labels.
+        - labels (dict): Dictionary mapping label indices to category names.
+    """
     X = []
     y = []
     i = 0
