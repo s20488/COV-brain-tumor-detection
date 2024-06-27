@@ -21,7 +21,7 @@ def create_model() -> Sequential:
     https://www.kaggle.com/code/ruslankl/brain-tumor-detection-v1-0-cnn-vgg-16
     """
     base_model = VGG16(
-        weights="vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5",
+        weights="COV_brain_tumor_detection/vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5",
         include_top=False,
         input_shape=IMG_SIZE + (3,),
     )
