@@ -23,7 +23,6 @@ __all__ = [
     "load_data",
     "split_data",
     "clean_directory",
-    "remove_directories",
     "save_new_images",
     "plot_confusion_matrix",
     "plot_data_distribution",
