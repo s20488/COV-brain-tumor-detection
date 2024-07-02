@@ -25,13 +25,13 @@ def split_data(
     Splits dataset into training, testing, and validation sets and copies files to corresponding directories.
 
     Parameters:
-    img_path (str): Path to the image dataset directory.
-    train_size (float): Proportion of the dataset for training. Default is 80%.
-    test_size (float): Proportion of the dataset for testing. Default is 10%.
-    val_size (float): Proportion of the dataset for validation. Default is 10%.
+        img_path (str): Path to the image dataset directory.
+        train_size (float): Proportion of the dataset for training. Default is 80%.
+        test_size (float): Proportion of the dataset for testing. Default is 10%.
+        val_size (float): Proportion of the dataset for validation. Default is 10%.
 
     Returns:
-    None: Creates directories and copies files.
+        None: Creates directories and copies files.
     """
     directories = [
         TRAIN_DIR + "yes",
@@ -89,14 +89,14 @@ def load_data(dir_path: str, img_size: tuple = IMG_SIZE) -> tuple:
     Loads image data from a directory and prepares it for machine learning tasks.
 
     Parameters:
-    dir_path (str): Path to the directory containing subdirectories of image data.
-    img_size (tuple): Desired size of the images after resizing. Default is IMG_SIZE.
+        dir_path (str): The path to the directory containing subdirectories of image data.
+        img_size (tuple): The desired size of the images after resizing. Default is IMG_SIZE.
 
     Returns:
-    tuple: A tuple containing:
-        - X (np.array): Array of resized images.
-        - y (np.array): Array of corresponding labels.
-        - labels (dict): Dictionary mapping label indices to category names.
+        tuple: A tuple containing:
+            - X (np.array): An array of resized images.
+            - y (np.array): An array of corresponding labels.
+            - labels (dict): A dictionary mapping label indices to category names.
     """
     X = []
     y = []
@@ -121,6 +121,17 @@ def load_data(dir_path: str, img_size: tuple = IMG_SIZE) -> tuple:
 def preprocess_images(
     image_set: np.ndarray, padding: int = 0, output_size: tuple = IMG_SIZE
 ) -> np.ndarray:
+    """
+    Preprocesses images for machine learning tasks.
+
+    Parameters:
+        image_set (np.ndarray): An array of images to preprocess.
+        padding (int): The amount of padding around the detected region of interest. Default is 0.
+        output_size (tuple): The desired size of the output images after preprocessing. Default is IMG_SIZE.
+
+    Returns:
+        np.ndarray: An array of preprocessed images.
+    """
     cropped_images = []
 
     for image in image_set:

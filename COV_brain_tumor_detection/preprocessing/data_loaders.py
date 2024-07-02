@@ -15,10 +15,13 @@ class BrainTumorDataset(Dataset):
     """
     PyTorch Dataset for loading brain tumor images and labels.
 
-    Args:
+    Parameters:
         images (List[np.ndarray]): List of image data (numpy arrays or paths).
         labels (List[int]): List of corresponding labels.
         transform (Optional[Callable]): Optional transform applied to images.
+
+    Returns:
+        None: Initializes the dataset object.
 
     Methods:
         __len__(): Returns the number of samples in the dataset.
@@ -56,9 +59,9 @@ def create_data_loaders(
     SEED: int = SEED,
 ) -> Tuple[DataLoader, DataLoader]:
     """
-    Creates DataLoader instances for training and validation datasets.
+    Splits the dataset into training and validation sets, applies transformations, and creates DataLoader instances.
 
-    Args:
+    Parameters:
         images (List[np.ndarray]): List of image data (numpy arrays).
         labels (List[int]): List of corresponding labels.
         IMG_SIZE (Tuple[int, int]): Size of input images (default: IMG_SIZE).

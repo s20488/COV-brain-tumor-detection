@@ -15,9 +15,12 @@ class BaseModel(LightningModule):
         """
         Initializes a PyTorch Lightning module for binary classification using a pretrained base model.
 
-        Args:
-            base_model (torch.nn.Module): Pretrained base model instance (e.g., VGG16, EfficientNet, RegNet).
-            num_features (int): Number of features in the base model's classifier layer.
+        Parameters:
+            base_model (torch.nn.Module): Instance of the pretrained base model (e.g., VGG16, EfficientNet, MNASNet).
+            num_features (int): Number of features in the classifier layer of the base model.
+
+        Returns:
+            None: Initializes the model object.
         """
         self.base_model = base_model
         self.base_model.classifier = nn.Sequential(
@@ -36,7 +39,7 @@ class BaseModel(LightningModule):
         """
         Performs a forward pass through the model.
 
-        Args:
+        Parameters:
             x (torch.Tensor): Input tensor.
 
         Returns:
@@ -60,7 +63,7 @@ class BaseModel(LightningModule):
         """
         Performs a training step.
 
-        Args:
+        Parameters:
             batch (tuple): Batch of input data and labels.
             batch_idx (int): Index of the current batch.
 
@@ -87,7 +90,7 @@ class BaseModel(LightningModule):
         """
         Performs a validation step.
 
-        Args:
+        Parameters:
             batch (tuple): Batch of input data and labels.
             batch_idx (int): Index of the current batch.
 
@@ -110,6 +113,9 @@ class BrainTumorModelVGG16(BaseModel):
         """
         Initializes a binary classification model using the VGG16 architecture.
 
+        Returns:
+            None: Initializes the model object.
+
         Inspiration:
         https://www.kaggle.com/code/ruslankl/brain-tumor-detection-v1-0-cnn-vgg-16
         """
@@ -120,6 +126,9 @@ class BrainTumorModelEfficientNet(BaseModel):
     def __init__(self) -> None:
         """
         Initializes a binary classification model using the EfficientNet architecture.
+
+        Returns:
+            None: Initializes the model object.
         """
         super().__init__(models.efficientnet_b0(pretrained=True), 1280)
 
@@ -128,5 +137,8 @@ class BrainTumorModelMNASNet(BaseModel):
     def __init__(self) -> None:
         """
         Initializes a binary classification model using the MNASNet architecture.
+
+        Returns:
+            None: Initializes the model object.
         """
         super().__init__(models.mnasnet1_3(pretrained=True), 1280)

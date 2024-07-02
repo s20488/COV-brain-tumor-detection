@@ -12,10 +12,10 @@ def plot_data_distribution() -> None:
     Plots the distribution of data into training, testing, and validation sets based on image counts.
 
     Parameters:
-    None
+        None
 
     Returns:
-    None
+        None: Displays a bar plot of the data distribution.
     """
     train_yes_count = len(os.listdir(os.path.join(TRAIN_DIR, "yes")))
     train_no_count = len(os.listdir(os.path.join(TRAIN_DIR, "no")))
@@ -43,13 +43,13 @@ def plot_samples(X: np.ndarray, y: np.ndarray, labels_dict: dict, n: int = 5) ->
     Plots a grid of sample images from the dataset with corresponding labels.
 
     Parameters:
-    X (np.ndarray): Array of images in numpy format.
-    y (np.ndarray): Array of labels corresponding to each image.
-    labels_dict (dict): Dictionary mapping label indices to label names.
-    n (int): Number of sample images to plot for each label. Default is 5.
+        X (np.ndarray): Array of images in numpy format.
+        y (np.ndarray): Array of labels corresponding to each image.
+        labels_dict (dict): Dictionary mapping label indices to label names.
+        n (int): Number of sample images to plot for each label. Default is 5.
 
     Returns:
-    None: Displays the grid of sample images using Matplotlib.
+        None: Displays a grid of sample images using Matplotlib.
     """
     fig, axes = plt.subplots(2, n, figsize=(20, 8))
     for index in range(len(labels_dict)):
@@ -68,6 +68,19 @@ def plot_confusion_matrix(
     title: str = "Confusion matrix",
     cmap: plt.cm = plt.cm.Blues,
 ) -> None:
+    """
+    Plots a confusion matrix for the model's predictions.
+
+    Parameters:
+        cm (np.ndarray): Confusion matrix.
+        classes (list[str]): List of class names.
+        normalize (bool): Whether to normalize the confusion matrix. Default is False.
+        title (str): Title for the confusion matrix plot. Default is "Confusion matrix".
+        cmap (plt.cm): Colormap for the plot. Default is plt.cm.Blues.
+
+    Returns:
+        None: Displays the confusion matrix using Matplotlib.
+    """
     if normalize:
         cm = cm.astype("float") / cm.sum(axis=1)[:, np.newaxis]
         cm = np.round(cm, 2)
@@ -96,6 +109,15 @@ def plot_confusion_matrix(
 
 
 def plot_model_performance(history: dict) -> None:
+    """
+    Plots the model's accuracy and loss over epochs for both training and validation sets.
+
+    Parameters:
+        history (dict): Dictionary containing the model's accuracy and loss history.
+
+    Returns:
+        None: Displays the model performance plots using Matplotlib.
+    """
     acc = history["accuracy"]
     val_acc = history["val_accuracy"]
     train_loss = history["train_loss"]
