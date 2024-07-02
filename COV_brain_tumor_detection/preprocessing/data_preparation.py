@@ -2,6 +2,7 @@ import os
 import shutil
 
 import cv2
+import imutils
 import numpy as np
 from sklearn.model_selection import train_test_split
 
@@ -115,3 +116,40 @@ def load_data(dir_path: str, img_size: tuple = IMG_SIZE) -> tuple:
     X = np.array(X)
     y = np.array(y)
     return X, y, labels
+
+
+def preprocess_images(
+    image_set: np.ndarray, padding: int = 0, output_size: tuple = IMG_SIZE
+) -> np.ndarray:
+    cropped_images = []
+
+    for image in image_set:
+        gray_image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+        gray_image = cv2.GaussianBlur(gray_image, (5, 5), 0)
+
+        _, binary_thresh = cv2.threshold(gray_image, 45, 255, cv2.THRESH_BINARY)
+
+        binary_thresh = cv2.erode(binary_thresh, None, iterations=2)
+        binary_thresh = cv2.dilate(binary_thresh, None, iterations=2)
+
+        contours = cv2.findContours(
+            binary_thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
+        )
+        contours = imutils.grab_contours(contours)
+        largest_contour = max(contours, key=cv2.contourArea)
+
+        leftmost_point = tuple(largest_contour[largest_contour[:, :, 0].argmin()][0])
+        rightmost_point = tuple(largest_contour[largest_contour[:, :, 0].argmax()][0])
+        topmost_point = tuple(largest_contour[largest_contour[:, :, 1].argmin()][0])
+        bottommost_point = tuple(largest_contour[largest_contour[:, :, 1].argmax()][0])
+
+        top = max(topmost_point[1] - padding, 0)
+        bottom = min(bottommost_point[1] + padding, image.shape[0])
+        left = max(leftmost_point[0] - padding, 0)
+        right = min(rightmost_point[0] + padding, image.shape[1])
+
+        cropped_image = image[top:bottom, left:right].copy()
+        cropped_image = cv2.resize(cropped_image, output_size)
+        cropped_images.append(cropped_image)
+
+    return np.array(cropped_images)
