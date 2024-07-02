@@ -2,7 +2,7 @@ import cv2
 import imutils
 import numpy as np
 from keras.applications.vgg16 import preprocess_input
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from keras.preprocessing.image import ImageDataGenerator
 
 from COV_brain_tumor_detection.config import IMG_SIZE, SEED, TRAIN_DIR, VAL_DIR
 

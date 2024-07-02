@@ -116,11 +116,11 @@ def plot_confusion_matrix(
 
 def plot_model_performance(history: dict) -> None:
     """
-    Plots the training and validation accuracy and loss curves of a neural network model
+    Plots the training and validation accuracy and loss curves of a neural network models
     over epochs.
 
     Parameters:
-    history (dict): A dictionary containing the training history of the model. Expected keys:
+    history (dict): A dictionary containing the training history of the models. Expected keys:
                     - "accuracy": Array of training accuracies over epochs.
                     - "val_accuracy": Array of validation accuracies over epochs.
                     - "loss": Array of training losses over epochs.

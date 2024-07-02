@@ -1,18 +1,12 @@
 [tool.poetry]
 name = "cov-brain-tumor-detection"
 version = "0.1.0"
-description = "Wykrywanie guzów mózgu z obrazów MRI przy użyciu modelu CNN, VGG-16"
-authors = ["Anastasiia Ponkratova"]
+description = ""
+authors = ["s20488 <s20488@pjwstk.edu.pl>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9.15"
-numpy = "^1.26.4"
-opencv-python-headless = "^4.6.0"
-imutils = "^0.5.4"
-matplotlib = "^3.8.4"
-scikit-learn = "^1.5.0"
-tensorflow = "^2.10.0"
+python = "^3.9"
 
 
 [build-system]

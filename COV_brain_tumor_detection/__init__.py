@@ -1,5 +1,9 @@
 from .config import IMG_SIZE, TEST_DIR, TRAIN_DIR, VAL_DIR
-from .model.model import create_model
+from .models.models import (
+    create_model_efficientnet,
+    create_model_nasnetmobile,
+    create_model_vgg16,
+)
 from .preprocessing.data_augmentation import create_data_generators, preprocess_images
 from .preprocessing.data_preparation import load_data, split_data
 from .utils.data_utils import clean_directory, save_new_images
@@ -17,7 +21,9 @@ __all__ = [
     "TRAIN_DIR",
     "VAL_DIR",
     "IMG_SIZE",
-    "create_model",
+    "create_model_vgg16",
+    "create_model_efficientnet",
+    "create_model_nasnetmobile",
     "create_data_generators",
     "preprocess_images",
     "load_data",
