@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cov-brain-tumor-detection"
-version = "0.1.0"
+version = "1.0.0"
 description = ""
 authors = ["s20488 <s20488@pjwstk.edu.pl>"]
 readme = "README.md"
