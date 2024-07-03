@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "cov-brain-tumor-detection"
+version = "1.0.1"
+description = "Implementation of CNN models (VGG16, EfficientNetB0, MNASNet) for detecting brain tumors in MRI images."
+authors = ["Anastasiia Ponkratova"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pytorch-lightning = "^2.3.1"
+torch = "^2.3.1"
+torchvision = "^0.18.1"
+torchaudio = "^2.3.1"
+scikit-learn = "^1.5.1"
+opencv-python = "^4.10.0.84"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
