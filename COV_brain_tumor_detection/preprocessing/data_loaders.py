@@ -1,7 +1,6 @@
 from typing import Any, Callable, List, Optional, Tuple, Union
 
 import numpy as np
-import torch
 from numpy import ndarray
 from PIL import Image
 from sklearn.model_selection import train_test_split
