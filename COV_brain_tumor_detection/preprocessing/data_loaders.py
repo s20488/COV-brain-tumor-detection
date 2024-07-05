@@ -35,7 +35,7 @@ class BrainTumorDataset(Dataset):
     ) -> None:
         self.images = images
         self.labels = np.array(labels).astype(np.float32)
-        self.transform = transform
+        self.transform = transform  # Data augmentation
 
     def __len__(self) -> int:
         return len(self.images)

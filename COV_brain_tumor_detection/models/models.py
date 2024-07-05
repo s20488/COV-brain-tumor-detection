@@ -26,8 +26,8 @@ class BaseModel(LightningModule):
         self.base_model.classifier = nn.Sequential(
             nn.Flatten(), nn.Dropout(0.5), nn.Linear(num_features, 1)
         )
-        self.sigmoid = nn.Sigmoid()
-        self.loss = nn.BCELoss()
+        self.sigmoid = nn.Sigmoid()  # Activation function
+        self.loss = nn.BCELoss()  # Loss function
         self.history = {
             "train_loss": [],
             "val_loss": [],
@@ -71,7 +71,9 @@ class BaseModel(LightningModule):
             torch.Tensor: Loss tensor for the current batch.
         """
         x, y = batch
-        y_hat = self(x).squeeze(1)
+        y_hat = self(x).squeeze(
+            1
+        )  # Removes extra dimension for correct fit with real labels
         loss = self.loss(y_hat, y)
         acc = (y_hat.round() == y).float().mean()
         self.log(

@@ -122,7 +122,7 @@ def preprocess_images(
     image_set: np.ndarray, padding: int = 0, output_size: tuple = IMG_SIZE
 ) -> np.ndarray:
     """
-    Preprocesses images for machine learning tasks.
+    Preprocessing of images to find the largest contour, extreme points and cropping.
 
     Parameters:
         image_set (np.ndarray): An array of images to preprocess.
@@ -143,23 +143,29 @@ def preprocess_images(
         binary_thresh = cv2.erode(binary_thresh, None, iterations=2)
         binary_thresh = cv2.dilate(binary_thresh, None, iterations=2)
 
+        # Highlighting contours
         contours = cv2.findContours(
             binary_thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
         )
-        contours = imutils.grab_contours(contours)
+        contours = imutils.grab_contours(
+            contours
+        )  # Creating a standard list of contours
         largest_contour = max(contours, key=cv2.contourArea)
 
+        # Determination of boundary points
         leftmost_point = tuple(largest_contour[largest_contour[:, :, 0].argmin()][0])
         rightmost_point = tuple(largest_contour[largest_contour[:, :, 0].argmax()][0])
         topmost_point = tuple(largest_contour[largest_contour[:, :, 1].argmin()][0])
         bottommost_point = tuple(largest_contour[largest_contour[:, :, 1].argmax()][0])
 
+        # Image cropping
         top = max(topmost_point[1] - padding, 0)
         bottom = min(bottommost_point[1] + padding, image.shape[0])
         left = max(leftmost_point[0] - padding, 0)
         right = min(rightmost_point[0] + padding, image.shape[1])
 
         cropped_image = image[top:bottom, left:right].copy()
+
         cropped_image = cv2.resize(cropped_image, output_size)
         cropped_images.append(cropped_image)
 

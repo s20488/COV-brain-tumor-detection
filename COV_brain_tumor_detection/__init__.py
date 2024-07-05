@@ -5,7 +5,7 @@ from .models import (
     BrainTumorModelVGG16,
 )
 from .preprocessing.data_loaders import create_data_loaders
-from .preprocessing.data_preparation import load_data, preprocess_images, split_data
+from .preprocessing.data_preprocessing import load_data, preprocess_images, split_data
 from .utils.data_utils import clean_directory, save_new_images
 from .visualization.plot_results import (
     plot_confusion_matrix,
