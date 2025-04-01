@@ -1,4 +1,3 @@
-# COV Brain Tumor Detection
 ## Installation
 
 To install the package from PyPI, use:
